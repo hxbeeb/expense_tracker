@@ -84,8 +84,8 @@ class _transactionsState extends State<transactions> {
                                 var t = snapshot.data!.docs[index]["type"];
                                 var m = snapshot.data!.docs[index]["money"];
                                 await fetchFieldValue(m, t);
-                                var id = await snapshot.data!.docs[index]
-                                    ["timestamp"];
+                                var id = snapshot.data!.docs[index]["timestamp"]
+                                    .toString();
                                 await db
                                     .collection("users")
                                     .doc(value.id.uid)
@@ -116,8 +116,8 @@ class _transactionsState extends State<transactions> {
                                   var t = snapshot.data!.docs[index]["type"];
                                   var m = snapshot.data!.docs[index]["money"];
                                   await fetchFieldValue(m, t);
-                                  var id = await snapshot.data!.docs[index]
-                                      ["timestamp"];
+                                  var id = snapshot.data!.docs[index]
+                                      ["timestamp"].toString();
                                   await db
                                       .collection("users")
                                       .doc(value.id.uid)
@@ -146,8 +146,8 @@ class _transactionsState extends State<transactions> {
                                   var t = snapshot.data!.docs[index]["type"];
                                   var m = snapshot.data!.docs[index]["money"];
                                   await fetchFieldValue(m, t);
-                                  var id = await snapshot.data!.docs[index]
-                                      ["timestamp"];
+                                  var id =  snapshot.data!.docs[index]
+                                      ["timestamp"].toString();
                                   await db
                                       .collection("users")
                                       .doc(value.id.uid)
@@ -177,8 +177,8 @@ class _transactionsState extends State<transactions> {
                                   var t = snapshot.data!.docs[index]["type"];
                                   var m = snapshot.data!.docs[index]["money"];
                                   await fetchFieldValue(m, t);
-                                  var id = await snapshot.data!.docs[index]
-                                      ["timestamp"];
+                                  var id = snapshot.data!.docs[index]
+                                      ["timestamp"].toString();
                                   await db
                                       .collection("users")
                                       .doc(value.id.uid)
@@ -190,7 +190,7 @@ class _transactionsState extends State<transactions> {
                                 backgroundColor: Colors.red,
                               )
                             ]),
-                            child: shopping_card(
+                            child: subscription_card(
                               money: snapshot.data!.docs[index]["money"],
                               type: snapshot.data!.docs[index]["type"],
                               desc: snapshot.data!.docs[index]["description"],
@@ -205,12 +205,12 @@ class _transactionsState extends State<transactions> {
                               onPressed: (_) async {
                                 var t = snapshot.data!.docs[index]["type"];
                                 var m = snapshot.data!.docs[index]["money"];
-                                var id = snapshot.data!.docs[index].id;
+                                var id = snapshot.data!.docs[index].toString();
                                 await db
                                     .collection("users")
-                                    .doc(value.id.uid)
+                                    .doc(value.id.uid.toString())
                                     .collection("transactions")
-                                    .doc(id)
+                                    .doc(id.toString())
                                     .delete();
                                 await fetchFieldValue(m, t);
                               },

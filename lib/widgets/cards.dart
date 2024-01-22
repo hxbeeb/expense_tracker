@@ -49,7 +49,8 @@ class Food_card extends StatelessWidget {
                     ),
                     Text(
                       desc,
-                      style: const TextStyle(fontSize: 13, color: Color(0xFF91919F)),
+                      style: const TextStyle(
+                          fontSize: 13, color: Color(0xFF91919F)),
                     )
                   ],
                 ),
@@ -65,7 +66,8 @@ class Food_card extends StatelessWidget {
                       ),
                 Text(
                   "${hour}:${minute}",
-                  style: const TextStyle(fontSize: 13, color: Color(0xFF91919F)),
+                  style:
+                      const TextStyle(fontSize: 13, color: Color(0xFF91919F)),
                 )
               ],
             )
@@ -124,7 +126,8 @@ class Travel_card extends StatelessWidget {
                     ),
                     Text(
                       desc,
-                      style: const TextStyle(fontSize: 13, color: Color(0xFF91919F)),
+                      style: const TextStyle(
+                          fontSize: 13, color: Color(0xFF91919F)),
                     )
                   ],
                 ),
@@ -140,7 +143,8 @@ class Travel_card extends StatelessWidget {
                       ),
                 Text(
                   "${hour}:${minute}",
-                  style: const TextStyle(fontSize: 13, color: Color(0xFF91919F)),
+                  style:
+                      const TextStyle(fontSize: 13, color: Color(0xFF91919F)),
                 )
               ],
             )
@@ -189,18 +193,19 @@ class subscription_card extends StatelessWidget {
                     ),
                   ),
                 ),
-               Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      desc,
-                      style:
-                          const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                      "Subscription",
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w600),
                     ),
                     Text(
                       desc,
-                      style: const TextStyle(fontSize: 13, color: Color(0xFF91919F)),
+                      style: const TextStyle(
+                          fontSize: 13, color: Color(0xFF91919F)),
                     )
                   ],
                 ),
@@ -216,7 +221,8 @@ class subscription_card extends StatelessWidget {
                       ),
                 Text(
                   "${hour}:${minute}",
-                  style: const TextStyle(fontSize: 13, color: Color(0xFF91919F)),
+                  style:
+                      const TextStyle(fontSize: 13, color: Color(0xFF91919F)),
                 )
               ],
             )
@@ -265,7 +271,7 @@ class shopping_card extends StatelessWidget {
                     ),
                   ),
                 ),
-               Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
@@ -275,7 +281,8 @@ class shopping_card extends StatelessWidget {
                     ),
                     Text(
                       desc,
-                      style: const TextStyle(fontSize: 13, color: Color(0xFF91919F)),
+                      style: const TextStyle(
+                          fontSize: 13, color: Color(0xFF91919F)),
                     )
                   ],
                 ),
@@ -291,7 +298,8 @@ class shopping_card extends StatelessWidget {
                       ),
                 Text(
                   "${hour}:${minute}",
-                  style: const TextStyle(fontSize: 13, color: Color(0xFF91919F)),
+                  style:
+                      const TextStyle(fontSize: 13, color: Color(0xFF91919F)),
                 )
               ],
             )

@@ -265,7 +265,7 @@ class _homeState extends State<home> {
                               }
                               if (snapshot.data!.docs[index]["category"] ==
                                   "Subscription") {
-                                return shopping_card(
+                                return subscription_card(
                                   money: snapshot.data!.docs[index]["money"],
                                   type: snapshot.data!.docs[index]["type"],
                                   desc: snapshot.data!.docs[index]
