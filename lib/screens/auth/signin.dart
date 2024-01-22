@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_tracker/providers/user.dart';
+import 'package:expense_tracker/screens/auth/signup.dart';
 import 'package:expense_tracker/screens/home/pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -252,7 +253,10 @@ class _signinState extends State<signin> {
                     const Text("Don't have an account?"),
                     TextButton(
                         onPressed: () {
-                          Navigator.pushReplacementNamed(context, 'signup');
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => signup())));
                         },
                         child: const Text("Signup"))
                   ],

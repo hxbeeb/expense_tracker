@@ -43,8 +43,7 @@ class _profileState extends State<profile> {
                         style: TextStyle(color: Colors.grey, fontSize: 14),
                       ),
                       Text(
-                        value.id.displayName ??
-                            auth.currentUser!.displayName.toString(),
+                        value.id.displayName ?? "",
                         style: TextStyle(
                             fontSize: 24, fontWeight: FontWeight.w500),
                       )

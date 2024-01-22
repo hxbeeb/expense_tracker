@@ -366,7 +366,7 @@ class _signupState extends State<signup> {
                     Text("Already have an account?"),
                     TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/signin');
+                          Navigator.pushReplacementNamed(context, '/signin');
                         },
                         child: Text("Login"))
                   ],
