@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_tracker/providers/user.dart';
 import 'package:expense_tracker/screens/auth/signin.dart';
 import 'package:expense_tracker/screens/home/pages.dart';
@@ -55,27 +56,48 @@ class _splashState extends State<splash> with SingleTickerProviderStateMixin {
     return Consumer<users>(
         builder: (BuildContext context, users value, Widget? child) {
       if (googleSignIn.currentUser != null) {
-        var id = googleSignIn.currentUser;
-        value.id = id;
+        value.id = googleSignIn.currentUser;
       }
       if (auth.currentUser != null) {
-        var id = googleSignIn.currentUser;
-        value.id = id;
+        value.id = auth.currentUser;
       }
-      Timer(
-        const Duration(seconds: 2),
-        () => Navigator.pushReplacement(
+      Future<void> fetchFieldValue() async {
+                          FirebaseFirestore firestore =
+                              FirebaseFirestore.instance;
+                          String documentId = value
+                              .id.uid; // Replace with your actual document ID
+
+                          try {
+                            // Replace "your_collection" with the name of your collection
+                            DocumentSnapshot snapshot = await firestore
+                                .collection("users")
+                                .doc(documentId)
+                                .get();
+
+                            if (snapshot.exists) {
+                              // Access the value of the 'fieldName' field
+                              value.income = snapshot.get("income");
+                              value.expense = snapshot.get("expense");
+                              value.balance = value.income - value.expense;
+                            }
+                          } catch (e) {
+                            print('Error fetching field value: $e');
+                          }
+                        }
+
+                        fetchFieldValue();
+      Timer(const Duration(seconds: 5), () {
+        Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) =>value.id==null? welcome():pages()),
-        ),
-      );
+          MaterialPageRoute(
+              builder: (context) =>
+                  auth.currentUser == null ? welcome() : pages()),
+        );
+      });
       return Scaffold(
         body: Container(
           decoration: const BoxDecoration(color: Color(0xFF7F3DFF)
-              // gradient: LinearGradient(
-              //     colors: [AppColor.appPrimaryColor],
-              //     begin: Alignment.topLeft,
-              //     end: Alignment.bottomRight)
+           
               ),
           child: Padding(
             padding: const EdgeInsets.all(12),

@@ -38,7 +38,7 @@ class _signinState extends State<signin> {
       var id = googleSignIn.currentUser!.id;
       await context.read<users>().id(id);
       await Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => pages()));
+          context, MaterialPageRoute(builder: (context) => const pages()));
 
       print("Signed up: ${user!.displayName}");
 
@@ -133,8 +133,23 @@ class _signinState extends State<signin> {
                         await auth.signInWithEmailAndPassword(
                             email: email.text, password: password.text);
                         value.id = auth.currentUser;
+
+                        FirebaseFirestore firestore =
+                            FirebaseFirestore.instance;
+                        String documentId = value.id.uid;
+
+                        DocumentSnapshot snapshot = await firestore
+                            .collection("users")
+                            .doc(documentId)
+                            .get();
+                        dynamic fieldValue = await snapshot.get("expense");
+                        dynamic fieldValue2 = await snapshot.get("income");
+
+                        value.expense = fieldValue;
+                        value.income = fieldValue2;
+                        value.balance = value.income - value.expense;
                         Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => pages()));
+                            MaterialPageRoute(builder: (context) => const pages()));
                       },
                       child: Container(
                         width: double.infinity,
@@ -143,7 +158,7 @@ class _signinState extends State<signin> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.fromLTRB(50, 15, 50, 15),
+                          padding: const EdgeInsets.fromLTRB(50, 15, 50, 15),
                           child: Center(
                             child: Text(
                               "Sign In",
@@ -177,7 +192,11 @@ class _signinState extends State<signin> {
                         .get();
                     dynamic fieldValue = await snapshot.get("expense");
                     dynamic fieldValue2 = await snapshot.get("income");
-                    if (fieldValue == 0 && fieldValue2 == 0) {
+                    value.expense = fieldValue;
+                    value.income = fieldValue2;
+                    value.balance = value.income - value.expense;
+
+                    if (fieldValue == null && fieldValue2 == null) {
                       db.collection("users").doc(auth.currentUser!.uid).set({
                         "name": user.displayName,
                         "email": user.email,
@@ -192,16 +211,15 @@ class _signinState extends State<signin> {
                         "photo": user.photoURL,
                       }, SetOptions(merge: true));
                     }
-                    await db
-                        .collection("users")
-                        .doc(auth.currentUser!.uid)
-                        .set({
-                      "name": user.displayName,
-                      "email": user.email,
-                      "photo": user.photoURL
-                    },SetOptions(merge: true));
+                    await db.collection("users").doc(auth.currentUser!.uid).set(
+                        {
+                          "name": user.displayName,
+                          "email": user.email,
+                          "photo": user.photoURL
+                        },
+                        SetOptions(merge: true));
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => pages()));
+                        MaterialPageRoute(builder: (context) => const pages()));
                   },
                   child: Container(
                     height: 70,
@@ -223,18 +241,18 @@ class _signinState extends State<signin> {
                         ]),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don't have an account?"),
+                    const Text("Don't have an account?"),
                     TextButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.pushReplacementNamed(context, 'signup');
                         },
-                        child: Text("Signup"))
+                        child: const Text("Signup"))
                   ],
                 )
               ]),

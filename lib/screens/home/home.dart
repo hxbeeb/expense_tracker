@@ -59,7 +59,7 @@ class _homeState extends State<home> {
                       const Text("Account Balance",
                           style: TextStyle(fontSize: 14)),
                       Text(
-                        "₹${value.balance.toString()}",
+                        "₹${value.balance ?? "0"}",
                         style: TextStyle(
                             fontSize: 40, fontWeight: FontWeight.bold),
                       ),
@@ -95,7 +95,7 @@ class _homeState extends State<home> {
                                             fontSize: 14, color: Colors.white),
                                       ),
                                       Text(
-                                        "₹${value.income}",
+                                        "₹${value.income ?? "0"}",
                                         style: TextStyle(
                                             fontSize: 22,
                                             fontWeight: FontWeight.w500,
@@ -136,7 +136,7 @@ class _homeState extends State<home> {
                                             fontSize: 14, color: Colors.white),
                                       ),
                                       Text(
-                                        "₹${value.expense}",
+                                        "₹${value.expense ?? "0"}",
                                         style: TextStyle(
                                             fontSize: 22,
                                             fontWeight: FontWeight.w500,
@@ -275,17 +275,16 @@ class _homeState extends State<home> {
                                 );
                               }
                               return shopping_card(
-                                  money: snapshot.data!.docs[index]["money"],
-                                  type: snapshot.data!.docs[index]["type"],
-                                  desc: snapshot.data!.docs[index]
-                                      ["description"],
-                                  hour: snapshot.data!.docs[index]["hour"],
-                                  minute: snapshot.data!.docs[index]["minute"],
-                                );
+                                money: snapshot.data!.docs[index]["money"],
+                                type: snapshot.data!.docs[index]["type"],
+                                desc: snapshot.data!.docs[index]["description"],
+                                hour: snapshot.data!.docs[index]["hour"],
+                                minute: snapshot.data!.docs[index]["minute"],
+                              );
                             });
                       }
                       return const Center(
-                        child:  Text("No Transactions"),
+                        child: Text("No Transactions"),
                       );
                     }),
               ),

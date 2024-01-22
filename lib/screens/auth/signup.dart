@@ -211,6 +211,31 @@ class _signupState extends State<signup> {
                         await auth.createUserWithEmailAndPassword(
                             email: email.text, password: password.text);
                         value.id = auth.currentUser;
+                        Future<void> fetchFieldValue() async {
+                          FirebaseFirestore firestore =
+                              FirebaseFirestore.instance;
+                          String documentId = value
+                              .id.uid; // Replace with your actual document ID
+
+                          try {
+                            // Replace "your_collection" with the name of your collection
+                            DocumentSnapshot snapshot = await firestore
+                                .collection("users")
+                                .doc(documentId)
+                                .get();
+
+                            if (snapshot.exists) {
+                              // Access the value of the 'fieldName' field
+                              value.income = snapshot.get("income");
+                              value.expense = snapshot.get("expense");
+                              value.balance = value.income - value.expense;
+                            }
+                          } catch (e) {
+                            print('Error fetching field value: $e');
+                          }
+                        }
+
+                        await fetchFieldValue();
                         await auth.currentUser!.updateDisplayName(name.text);
                         await auth.currentUser!.updatePhotoURL(
                             "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg");
@@ -284,6 +309,7 @@ class _signupState extends State<signup> {
                         "photo": user.photoURL,
                       }, SetOptions(merge: true));
                     }
+
                     Future<void> fetchFieldValue() async {
                       FirebaseFirestore firestore = FirebaseFirestore.instance;
                       String documentId =
