@@ -116,8 +116,9 @@ class _transactionsState extends State<transactions> {
                                   var t = snapshot.data!.docs[index]["type"];
                                   var m = snapshot.data!.docs[index]["money"];
                                   await fetchFieldValue(m, t);
-                                  var id = snapshot.data!.docs[index]
-                                      ["timestamp"].toString();
+                                  var id = snapshot
+                                      .data!.docs[index]["timestamp"]
+                                      .toString();
                                   await db
                                       .collection("users")
                                       .doc(value.id.uid)
@@ -146,8 +147,9 @@ class _transactionsState extends State<transactions> {
                                   var t = snapshot.data!.docs[index]["type"];
                                   var m = snapshot.data!.docs[index]["money"];
                                   await fetchFieldValue(m, t);
-                                  var id =  snapshot.data!.docs[index]
-                                      ["timestamp"].toString();
+                                  var id = snapshot
+                                      .data!.docs[index]["timestamp"]
+                                      .toString();
                                   await db
                                       .collection("users")
                                       .doc(value.id.uid)
@@ -177,8 +179,9 @@ class _transactionsState extends State<transactions> {
                                   var t = snapshot.data!.docs[index]["type"];
                                   var m = snapshot.data!.docs[index]["money"];
                                   await fetchFieldValue(m, t);
-                                  var id = snapshot.data!.docs[index]
-                                      ["timestamp"].toString();
+                                  var id = snapshot
+                                      .data!.docs[index]["timestamp"]
+                                      .toString();
                                   await db
                                       .collection("users")
                                       .doc(value.id.uid)

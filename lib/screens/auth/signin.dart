@@ -148,8 +148,10 @@ class _signinState extends State<signin> {
                         value.expense = fieldValue;
                         value.income = fieldValue2;
                         value.balance = value.income - value.expense;
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => const pages()));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const pages()));
                       },
                       child: Container(
                         width: double.infinity,

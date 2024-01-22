@@ -21,27 +21,7 @@ class splash extends StatefulWidget {
 class _splashState extends State<splash> with SingleTickerProviderStateMixin {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // if (googleSignIn.currentUser != null) {
-    //   var id = googleSignIn.currentUser!.id;
-    //   context.read<users>().id(id);
-    // }
-    // if (auth.currentUser != null) {
-    //   var id = googleSignIn.currentUser!.id;
-    //   context.read<users>().id(id);
-    // }
-    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    // Future.delayed(const Duration(seconds: 3), () {
-    //   if (googleSignIn.currentUser == null || auth.currentUser == null) {
-    //     Navigator.pushReplacementNamed(context, '/welcome');
-    //   } else {
-    //     Navigator.pushReplacementNamed(context, '/pages');
-    //   }
-    // });
-  }
+  
 
   @override
   void dispose() {
@@ -62,30 +42,27 @@ class _splashState extends State<splash> with SingleTickerProviderStateMixin {
         value.id = auth.currentUser;
       }
       Future<void> fetchFieldValue() async {
-                          FirebaseFirestore firestore =
-                              FirebaseFirestore.instance;
-                          String documentId = value
-                              .id.uid; // Replace with your actual document ID
+        FirebaseFirestore firestore = FirebaseFirestore.instance;
+        String documentId =
+            value.id.uid; // Replace with your actual document ID
 
-                          try {
-                            // Replace "your_collection" with the name of your collection
-                            DocumentSnapshot snapshot = await firestore
-                                .collection("users")
-                                .doc(documentId)
-                                .get();
+        try {
+          // Replace "your_collection" with the name of your collection
+          DocumentSnapshot snapshot =
+              await firestore.collection("users").doc(documentId).get();
 
-                            if (snapshot.exists) {
-                              // Access the value of the 'fieldName' field
-                              value.income = snapshot.get("income");
-                              value.expense = snapshot.get("expense");
-                              value.balance = value.income - value.expense;
-                            }
-                          } catch (e) {
-                            print('Error fetching field value: $e');
-                          }
-                        }
+          if (snapshot.exists) {
+            // Access the value of the 'fieldName' field
+            value.income = snapshot.get("income");
+            value.expense = snapshot.get("expense");
+            value.balance = value.income - value.expense;
+          }
+        } catch (e) {
+          print('Error fetching field value: $e');
+        }
+      }
 
-                        fetchFieldValue();
+      fetchFieldValue();
       Timer(const Duration(seconds: 5), () {
         Navigator.pushReplacement(
           context,
@@ -96,9 +73,7 @@ class _splashState extends State<splash> with SingleTickerProviderStateMixin {
       });
       return Scaffold(
         body: Container(
-          decoration: const BoxDecoration(color: Color(0xFF7F3DFF)
-           
-              ),
+          decoration: const BoxDecoration(color: Color(0xFF7F3DFF)),
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: Column(

@@ -134,7 +134,6 @@ class _profileState extends State<profile> {
                         GoogleSignIn().signOut();
 
                         auth.signOut();
-                      
 
                         Navigator.pushReplacementNamed(context, '/signin');
                       },

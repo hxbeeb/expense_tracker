@@ -9,9 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class pages extends StatefulWidget {
-
-
- const  pages( {super.key});
+  const pages({super.key});
 
   @override
   State<pages> createState() => _pagesState();
@@ -24,7 +22,6 @@ class _pagesState extends State<pages> {
   Widget build(BuildContext context) {
     return Consumer<users>(
         builder: (BuildContext context, users value, Widget? child) {
-     
       return Scaffold(
         body: screens[i],
         bottomNavigationBar: BottomNavigationBar(

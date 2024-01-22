@@ -13,7 +13,8 @@ class welcome extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -29,11 +30,12 @@ class welcome extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Row(mainAxisAlignment: MainAxisAlignment.center,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Flexible(
                               child: Text(
-                            "Welcome to CipherX.",
+                            "Welcome to expense_tracker.",
                             style: TextStyle(fontSize: 36, color: Colors.white),
                           )),
                           GestureDetector(
